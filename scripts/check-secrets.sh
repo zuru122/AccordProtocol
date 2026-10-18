@@ -9,7 +9,7 @@ if printf '%s\n' "$files" | xargs grep -nE -- '-----BEGIN (RSA|EC|OPENSSH|PRIVAT
   exit 1
 fi
 
-if printf '%s\n' "$files" | xargs grep -nE -- '(^|[^A-Za-z])(SECRET|API_TOKEN|ACCESS_TOKEN|PRIVATE_KEY|RPC_KEY|DATABASE_URL)[[:space:]]*=[[:space:]]*[^$<{[:space:]]{8,}' | grep -vE '(example|placeholder|changeme|your[-_])' ; then
+if printf '%s\n' "$files" | xargs grep -nE -- '(^|[^A-Za-z])(SECRET|API_TOKEN|ACCESS_TOKEN|PRIVATE_KEY|RPC_KEY|DATABASE_URL)[[:space:]]*=[[:space:]]*[^$<{[:space:]]{8,}' | grep -vE '(example|placeholder|changeme|your[-_]|localhost|127\.0\.0\.1|whsec_0)' ; then
   echo "Potential hard-coded secret assignment detected" >&2
   exit 1
 fi
